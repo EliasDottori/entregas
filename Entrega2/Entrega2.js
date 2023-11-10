@@ -88,7 +88,6 @@ class ProductManager {
 
 const productManager = new ProductManager("productos.json");
 
-// Ejemplos de uso:
 productManager.addProduct({
   title: "Producto 1",
   description: "Descripción del producto 1",
