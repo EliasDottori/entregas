@@ -1,28 +1,107 @@
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+const fs = require("fs");
 
-// Generar 10,000 números aleatorios en un rango de 1 a 20
-const randomNumbers = [];
-for (let i = 0; i < 10000; i++) {
-  const randomNumber = getRandomNumber(1, 20);
-  randomNumbers.push(randomNumber);
-}
+class ProductManager {
+  constructor(filePath) {
+    this.path = filePath;
+    this.products = this.loadProducts();
+    this.productId = this.generateNextId();
+  }
 
-// Inicializar un objeto para realizar el conteo de ocurrencias
-const numberCount = {};
+  generateNextId() {
+    if (this.products.length === 0) {
+      return 1;
+    }
+    const maxId = Math.max(...this.products.map((product) => product.id));
+    return maxId + 1;
+  }
 
-// Contar la cantidad de veces que cada número aparece
-for (const number of randomNumbers) {
-  if (numberCount[number]) {
-    numberCount[number] += 1;
-  } else {
-    numberCount[number] = 1;
+  loadProducts() {
+    try {
+      const data = fs.readFileSync(this.path, "utf8");
+      return JSON.parse(data);
+    } catch (error) {
+      return [];
+    }
+  }
+
+  saveProducts() {
+    const data = JSON.stringify(this.products, null, 2);
+    fs.writeFileSync(this.path, data, "utf8");
+  }
+
+  addProduct(product) {
+    if (
+      !product.title ||
+      !product.description ||
+      !product.price ||
+      !product.thumbnail ||
+      !product.code ||
+      !product.stock
+    ) {
+      console.log("Todos los campos son obligatorios");
+      return;
+    }
+
+    if (this.products.some((p) => p.code === product.code)) {
+      console.log("El código ya existe");
+      return;
+    }
+
+    product.id = this.productId++;
+    this.products.push(product);
+    this.saveProducts();
+  }
+
+  getProducts() {
+    return this.products;
+  }
+
+  getProductById(id) {
+    const product = this.products.find((p) => p.id === id);
+    if (product) {
+      return product;
+    } else {
+      console.log("Producto no encontrado");
+    }
+  }
+
+  updateProduct(id, updatedProduct) {
+    const index = this.products.findIndex((p) => p.id === id);
+    if (index !== -1) {
+      this.products[index] = { ...this.products[index], ...updatedProduct };
+      this.saveProducts();
+    } else {
+      console.log("Producto no encontrado");
+    }
+  }
+
+  deleteProduct(id) {
+    const index = this.products.findIndex((p) => p.id === id);
+    if (index !== -1) {
+      this.products.splice(index, 1);
+      this.saveProducts();
+    } else {
+      console.log("Producto no encontrado");
+    }
   }
 }
 
-// Mostrar los resultados por consola
-console.log("Resultados:");
-for (const number in numberCount) {
-  console.log(`Número ${number}: ${numberCount[number]} veces`);
-}
+const productManager = new ProductManager("productos.json");
+
+// Ejemplos de uso:
+productManager.addProduct({
+  title: "Producto 1",
+  description: "Descripción del producto 1",
+  price: 10.99,
+  thumbnail: "imagen1.jpg",
+  code: "P001",
+  stock: 100,
+});
+
+productManager.updateProduct(1, { price: 12.99, stock: 90 });
+
+console.log(productManager.getProducts());
+console.log(productManager.getProductById(1));
+
+productManager.deleteProduct(1);
+console.log(productManager.getProducts());
