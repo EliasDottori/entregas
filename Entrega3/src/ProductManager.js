@@ -52,8 +52,14 @@ class ProductManager {
     this.saveProducts();
   }
 
-  getProducts() {
-    return this.products;
+  getProducts(limit) {
+    let productsToReturn = this.products;
+
+    if (limit) {
+      productsToReturn = productsToReturn.slice(0, parseInt(limit));
+    }
+
+    return productsToReturn;
   }
 
   getProductById(id) {
@@ -87,22 +93,3 @@ class ProductManager {
 }
 
 module.exports = ProductManager;
-
-// const productManager = new ProductManager("productos.json");
-
-// productManager.addProduct({
-//   title: "Producto 1",
-//   description: "Descripción del producto 1",
-//   price: 10.99,
-//   thumbnail: "imagen1.jpg",
-//   code: "P001",
-//   stock: 100,
-// });
-
-// productManager.updateProduct(1, { price: 12.99, stock: 90 });
-
-// console.log(productManager.getProducts());
-// console.log(productManager.getProductById(1));
-
-// productManager.deleteProduct(1);
-// console.log(productManager.getProducts());
