@@ -34,9 +34,9 @@ class ProductManager {
       !product.title ||
       !product.description ||
       !product.price ||
-      !product.thumbnail ||
       !product.code ||
-      !product.stock
+      !product.stock ||
+      !product.category
     ) {
       console.log("Todos los campos son obligatorios");
       return;
@@ -48,33 +48,16 @@ class ProductManager {
     }
 
     product.id = this.productId++;
+    product.status = true;
+    product.thumbnails = product.thumbnails || [];
     this.products.push(product);
     this.saveProducts();
-  }
-
-  getProducts(limit) {
-    let productsToReturn = this.products;
-
-    if (limit) {
-      productsToReturn = productsToReturn.slice(0, parseInt(limit));
-    }
-
-    return productsToReturn;
-  }
-
-  getProductById(id) {
-    const product = this.products.find((p) => p.id === id);
-    if (product) {
-      return product;
-    } else {
-      console.log("Producto no encontrado");
-    }
   }
 
   updateProduct(id, updatedProduct) {
     const index = this.products.findIndex((p) => p.id === id);
     if (index !== -1) {
-      this.products[index] = { ...this.products[index], ...updatedProduct };
+      this.products[index] = { ...this.products[index], ...updatedProduct, id };
       this.saveProducts();
     } else {
       console.log("Producto no encontrado");
