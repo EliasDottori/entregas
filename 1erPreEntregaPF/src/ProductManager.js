@@ -7,6 +7,7 @@ class ProductManager {
     this.productId = this.generateNextId();
   }
 
+  //ID autoincrementable
   generateNextId() {
     if (this.products.length === 0) {
       return 1;
@@ -15,6 +16,7 @@ class ProductManager {
     return maxId + 1;
   }
 
+  //Carga productos desde JSON
   loadProducts() {
     try {
       const data = fs.readFileSync(this.path, "utf8");
@@ -24,11 +26,13 @@ class ProductManager {
     }
   }
 
+  //Guarda productos
   saveProducts() {
     const data = JSON.stringify(this.products, null, 2);
     fs.writeFileSync(this.path, data, "utf8");
   }
 
+  //Agrega nuevo producto
   addProduct(product) {
     if (
       !product.title ||
@@ -54,6 +58,7 @@ class ProductManager {
     this.saveProducts();
   }
 
+  //Trae productos, puede o no utilizar un limite
   getProducts(limit) {
     let productsToReturn = this.products;
 
@@ -64,6 +69,7 @@ class ProductManager {
     return productsToReturn;
   }
 
+  //Trae producto mediante ID
   getProductById(id) {
     const product = this.products.find((p) => p.id === id);
     if (product) {
@@ -73,6 +79,7 @@ class ProductManager {
     }
   }
 
+  //Actualiza producto
   updateProduct(id, updatedProduct) {
     const index = this.products.findIndex((p) => p.id === id);
     if (index !== -1) {
@@ -83,6 +90,7 @@ class ProductManager {
     }
   }
 
+  //Elimina producto
   deleteProduct(id) {
     const index = this.products.findIndex((p) => p.id === id);
     if (index !== -1) {

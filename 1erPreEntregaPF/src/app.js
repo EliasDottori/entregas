@@ -5,11 +5,15 @@ const CartManager = require("./CartManager");
 const app = express();
 const port = 8080;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const productManager = new ProductManager("productos.json");
 const cartManager = new CartManager("");
 
 const productRouter = express.Router();
 
+//Traer todos los productos
 productRouter.get("/", async (req, res) => {
   try {
     const limit = req.query.limit;
@@ -20,6 +24,7 @@ productRouter.get("/", async (req, res) => {
   }
 });
 
+//Traer productos mediante ID
 productRouter.get("/:pid", async (req, res) => {
   try {
     const productId = parseInt(req.params.pid);
@@ -34,6 +39,7 @@ productRouter.get("/:pid", async (req, res) => {
   }
 });
 
+//Actualiza producto
 productRouter.post("/", async (req, res) => {
   try {
     const newProduct = req.body;
@@ -48,11 +54,13 @@ app.use("/api/products", productRouter);
 
 const cartRouter = express.Router();
 
+//Crea Carrito
 cartRouter.post("/", (req, res) => {
   const newCart = cartManager.createCart();
   res.json(newCart);
 });
 
+//Trae carrito mediante ID
 cartRouter.get("/:cid", (req, res) => {
   const cartId = parseInt(req.params.cid);
   const cart = cartManager.getCartById(cartId);
@@ -63,6 +71,7 @@ cartRouter.get("/:cid", (req, res) => {
   }
 });
 
+//Carga producto mediante ID en carrito elegido mediante ID
 cartRouter.post("/:cid/product/:pid", (req, res) => {
   const cartId = parseInt(req.params.cid);
   const productId = parseInt(req.params.pid);
