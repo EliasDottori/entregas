@@ -6,7 +6,7 @@ const app = express();
 const port = 8080;
 
 const productManager = new ProductManager("productos.json");
-const cartManager = new CartManager("cart.json");
+const cartManager = new CartManager("");
 
 const productRouter = express.Router();
 
@@ -29,6 +29,16 @@ productRouter.get("/:pid", async (req, res) => {
     } else {
       res.status(404).json({ error: "Producto no encontrado" });
     }
+  } catch (error) {
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+productRouter.post("/", async (req, res) => {
+  try {
+    const newProduct = req.body;
+    const product = await productManager.addProduct(newProduct);
+    res.json({ message: `Producto ${product} agregado exitosamente` });
   } catch (error) {
     res.status(500).json({ error: "Error interno del servidor" });
   }
