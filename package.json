@@ -1,5 +1,26 @@
 {
   "dependencies": {
-    "express": "^4.18.2"
-  }
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2"
+  },
+  "name": "entregas",
+  "version": "1.0.0",
+  "main": "module",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon entrega4/src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EliasDottori/entregas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EliasDottori/entregas/issues"
+  },
+  "homepage": "https://github.com/EliasDottori/entregas#readme",
+  "description": ""
 }

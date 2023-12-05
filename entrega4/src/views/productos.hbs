@@ -1,0 +1,14 @@
+<div class="containProductos">
+    {{#each productos}}
+        <div class="producto">
+            <h2> {{ this.nombre }} </h2>
+            <div>
+                <p> Bodega: {{ bodega }} </p>
+                <p> Tipo: {{ tipo }} </p>
+                <p> Variedad: {{ variedad }} </p>
+                <p> Año: {{ año }} </p>
+            </div>
+            <h3> Precio: ${{ precio }} </h3>
+        </div>
+    {{/each}}
+</div>

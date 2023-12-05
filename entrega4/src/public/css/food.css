@@ -1,0 +1,21 @@
+.containProductos{
+    margin: 100px auto 100px;
+    width: 81%;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-template-rows: auto;
+    height: 100%;
+    box-sizing: border-box;
+    grid-row-gap: 50px;
+}
+
+.producto{
+    width: 100%;
+    border: 1px solid black;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
