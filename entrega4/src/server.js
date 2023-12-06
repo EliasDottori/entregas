@@ -3,7 +3,6 @@ import handlebars from "express-handlebars";
 import __dirname from "./utils.js";
 import viewRouter from "./routes/view.routes.js";
 import { Server } from "socket.io";
-import productosJson from "../public/productos.json" assert { type: "json" };
 
 const app = express();
 const port = 8080;
@@ -12,6 +11,8 @@ const httpServer = app.listen(port, () => {
 });
 
 const io = new Server(httpServer);
+
+const productosNuevos = [];
 
 app.engine(
   "hbs",
@@ -45,6 +46,7 @@ io.on("connection", (socket) => {
 
   socket.on("productoNuevo", (data) => {
     console.log(data);
-    productosJson.push(data);
+    productosNuevos.push(data);
+    socket.emit("productosNuevos", productosNuevos);
   });
 });

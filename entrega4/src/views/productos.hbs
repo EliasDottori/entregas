@@ -10,21 +10,9 @@
         <div><p>Precio</p><input type="number" name="precio" id="precio"></div>
         <button id="agregarProducto">Agregar Producto</button>
     </div>
-  <div class="containProductos">
-    {{#each productos}}
-      <div class="producto">
-        <h2> {{this.nombre}} </h2>
-        <div>
-          <p> Bodega: {{bodega}} </p>
-          <p> Tipo: {{tipo}} </p>
-          <p> Variedad: {{variedad}} </p>
-          <p> Año: {{año}} </p>
-        </div>
-        <h3> Precio: ${{precio}} </h3>
-        <button>Agregar</button>
-      </div>
-    {{/each}}
-  </div>
+    <div class="containProductos" id="containProducts">
+        
+    </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/productos.js"></script>
 </div>
