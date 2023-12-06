@@ -1,112 +1,82 @@
   [
     {
-      "id": "1",
       "nombre": "Iscay",
       "bodega": "Trapiche",
       "tipo": "Tinto",
       "variedad": "Malbec & Cabernet-French",
       "año": "2018",
-      "precio": 27510,
-      "img": "iscay.png",
-      "especial": 1
+      "precio": 27510
     },
     {
-      "id": "2",
       "nombre": "Adrianna Vineyard",
       "bodega": "Catena Zapata",
       "tipo": "Blanco",
       "variedad": "Chardonnay",
       "año": "2019",
-      "precio": 24850,
-      "img": "catenazapata.png",
-      "especial": 1
+      "precio": 24850
     },
     {
-      "id": "3",
       "nombre": "Nosotros",
       "bodega": "Susana Balbo",
       "tipo": "Tinto",
       "variedad": "Malbec",
       "año": "2019",
-      "precio": 18500,
-      "img": "nosotros.png",
-      "especial": 1
+      "precio": 18500
     },
     {
-      "id": "4",
       "nombre": "Alma Mora",
       "bodega": "Finca Las Moras",
       "tipo": "Tinto",
       "variedad": "Malbec",
       "año": "2020",
-      "precio": 1245,
-      "img": "almamora.png",
-      "especial": 1
+      "precio": 1245
     },
     {
-      "id": "5",
       "nombre": "Rutini",
       "bodega": "La Rural",
       "tipo": "Tinto",
       "variedad": "Malbec",
       "año": "2020",
-      "precio": 2550,
-      "img": "rutini.png",
-      "especial": 1
+      "precio": 2550
     },
     {
-      "id": "6",
       "nombre": "Latitud 33°",
       "bodega": "33°",
       "tipo": "Tinto",
       "variedad": "Malbec",
       "año": "2018",
-      "precio": 1650,
-      "img": "latitud33.png",
-      "especial": 1
+      "precio": 1650
     },
     {
-      "id": "7",
       "nombre": "Los Haroldos",
       "bodega": "Haroldos",
       "tipo": "Tinto",
       "variedad": "Malbec",
       "año": "2019",
-      "precio": 2280,
-      "img": "losharoldos.png",
-      "especial": 0
+      "precio": 2280
     },
     {
-      "id": "8",
       "nombre": "Etchart Privado",
       "bodega": "Etchart",
       "tipo": "Blanco",
       "variedad": "Torrontés",
       "año": "2018",
-      "precio": 950,
-      "img": "etchart.png",
-      "especial": 0
+      "precio": 950
     },
     {
-      "id": "9",
       "nombre": "Trumpeter",
       "bodega": "La Rural",
       "tipo": "Tinto",
       "variedad": "Malbec",
       "año": 2019,
-      "precio": 2280,
-      "img": "trumpeter.png",
-      "especial": 0
+      "precio": 2280
     },
     {
-      "id": "10",
       "nombre": "Don Valentin",
       "bodega": "Bianchi",
       "tipo": "Tinto",
       "variedad": "Malbec Lacrado",
       "año": "2020",
-      "precio": 1050,
-      "img": "donvalentin.png",
-      "especial": 0
+      "precio": 1050
     }
   ]

@@ -2,9 +2,16 @@ import express from "express";
 import handlebars from "express-handlebars";
 import __dirname from "./utils.js";
 import viewRouter from "./routes/view.routes.js";
+import { Server } from "socket.io";
+import productosJson from "../public/productos.json" assert { type: "json" };
 
 const app = express();
 const port = 8080;
+const httpServer = app.listen(port, () => {
+  console.log(`Servidor online! Vínculo: http://localhost:${port}`);
+});
+
+const io = new Server(httpServer);
 
 app.engine(
   "hbs",
@@ -21,6 +28,23 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use("/", viewRouter);
 
-app.listen(port, () => {
-  console.log(`Servidor online! Vínculo: http://localhost:${port}`);
+//socket com
+
+io.on("connection", (socket) => {
+  console.log("nueva conexion");
+
+  socket.on("message", (data) => {
+    console.log(data);
+  });
+
+  socket.emit("server_message", "mensaje enviado desde el server");
+
+  socket.on("mensProduct", (data) => {
+    console.log(data);
+  });
+
+  socket.on("productoNuevo", (data) => {
+    console.log(data);
+    productosJson.push(data);
+  });
 });
