@@ -1,0 +1,26 @@
+<div class="layout">
+    <div class="titleContainer">
+        <h1 class="title"> {{title}} </h1>
+    </div>
+    <div class="titleContainer">
+        <a class="link" href="{{ urlProductos }}" class="linkCatalogo" > Ver Catalogo en tiempo real </a>
+    </div>
+    <div class="containProductos" id="containProducts">
+    {{#each productos}}
+      <div class="producto">
+        <h2> {{this.nombre}} </h2>
+        <div>
+          <p> Bodega: {{bodega}} </p>
+          <p> Tipo: {{tipo}} </p>
+          <p> Variedad: {{variedad}} </p>
+          <p> Año: {{año}} </p>
+        </div>
+        <h3> Precio: ${{precio}} </h3>
+        <button>Agregar</button>
+      </div>
+    {{/each}}
+  </div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js"></script>
+    
+</div>
