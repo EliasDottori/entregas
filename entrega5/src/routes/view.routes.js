@@ -1,22 +1,16 @@
 import { Router } from "express";
 
-import productos from "../public/productos.json" assert { type: "json" };
+import { productsModel } from "../models/user.model";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.render("index", {
-    title: "Bienvenido a El Bodegon!",
-    fileCss: "style.css",
-    productos,
-    urlProductos: "/productos",
-  });
-});
-
-router.get("/productos", (req, res) => {
-  res.render("productos", {
-    fileCss: "food.css",
-  });
+router.get("/", async (req, res) => {
+  try {
+    let products = await productsModel.find();
+    res.send({ result: "success", payload: products });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 export default router;
