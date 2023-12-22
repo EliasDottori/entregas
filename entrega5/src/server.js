@@ -3,9 +3,10 @@ import handlebars from "express-handlebars";
 import __dirname from "./utils.js";
 import viewRouter from "./routes/view.routes.js";
 import { Server } from "socket.io";
+import mongoose from "mongoose";
+import { password, db_name, port } from "./env.js";
 
 const app = express();
-const port = 8080;
 const httpServer = app.listen(port, () => {
   console.log(`Servidor online! Vínculo: http://localhost:${port}`);
 });
@@ -13,6 +14,15 @@ const httpServer = app.listen(port, () => {
 const io = new Server(httpServer);
 
 const productosNuevos = [];
+
+mongoose
+  .connect(
+    `mongodb+srv://EliasDottori:${password}@codercluster.dbbse10.mongodb.net/${db_name}?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    console.log("db coneccted");
+  })
+  .catch((error) => console.log(error));
 
 app.engine(
   "hbs",

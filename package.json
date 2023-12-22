@@ -11,7 +11,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon entrega4/src/server.js"
+    "dev": "nodemon entrega5/src/server.js"
   },
   "repository": {
     "type": "git",
