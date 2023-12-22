@@ -1,11 +1,28 @@
 <div class="layout">
-    <div class="titleContainer">
+  <div class="containerIndex">
+    <div>
+      <div class="titleContainer">
         <h1 class="title"> {{title}} </h1>
+      </div>
+      <div class="titleContainer">
+        <a class="link" href="{{urlProductos}}" class="linkCatalogo">
+          Ver Catalogo en tiempo real
+        </a>
+      </div>
     </div>
-    <div class="titleContainer">
-        <a class="link" href="{{ urlProductos }}" class="linkCatalogo" > Ver Catalogo en tiempo real </a>
+    <div class="chatContainer">
+      <div class="chat">
+        <h2>Chat en vivo</h2>
+        <div class="chatContent" id="chatContent">
+        </div>
+        <div class="containerTextChat">
+          <input class="textChat" type="text" id="textChat">
+          <button id="enviar">Enviar</button>
+        </div>
+      </div>
     </div>
-    <div class="containProductos" id="containProducts">
+  </div>
+  <div class="containProductos" id="containProducts">
     {{#each productos}}
       <div class="producto">
         <h2> {{this.nombre}} </h2>
@@ -20,7 +37,8 @@
       </div>
     {{/each}}
   </div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/main.js"></script>
-    
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/main.js"></script>
+
 </div>

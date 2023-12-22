@@ -31,11 +31,15 @@ app.use("/", viewRouter);
 
 //socket com
 
+let messages = [];
+
 io.on("connection", (socket) => {
   console.log("nueva conexion");
 
   socket.on("message", (data) => {
-    console.log(data);
+    messages.push(data);
+    io.emit("messagesLogs", messages);
+    console.log(messages);
   });
 
   socket.emit("server_message", "mensaje enviado desde el server");

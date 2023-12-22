@@ -42,6 +42,63 @@
     grid-row-gap: 50px;
 }
 
+.containerIndex{
+    display: flex;
+
+}
+
+.chatContainer{
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    
+    align-items: center;
+}
+
+.chat{
+    width: 90%;
+    height: 90%;
+    flex-direction: column; 
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.chatContent{
+    width: 90%;
+    height: 70%;
+    border: 2px solid black;
+    gap: 5px;
+    padding: 3px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+.globeChat{
+    width: auto;
+    height: auto;
+    max-width: 50%;
+    flex-direction: column;
+    gap: 5px;
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.containerTextChat{
+    width: 90%;
+    height: 10%;
+}
+
+.textChat{
+    width: 90%;
+    height: 90%;
+}
+
 .producto{
     width: 100%;
     border: 1px solid black;
