@@ -40,7 +40,7 @@ function sendMessage() {
 
 socket.on("messagesLogs", (data) => {
   let messages = "";
-  console.log(data);
+  console.log("wey", data);
   data.forEach((message) => {
     messages += `<div class="globeChat" >
     <h4>${message.user}</h4>

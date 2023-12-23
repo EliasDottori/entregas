@@ -5,6 +5,7 @@ import viewRouter from "./routes/view.routes.js";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
 import { password, db_name, port } from "./env.js";
+import messageModel from "./models/message.model.js";
 
 const app = express();
 const httpServer = app.listen(port, () => {
@@ -46,10 +47,21 @@ let messages = [];
 io.on("connection", (socket) => {
   console.log("nueva conexion");
 
-  socket.on("message", (data) => {
-    messages.push(data);
-    io.emit("messagesLogs", messages);
-    console.log(messages);
+  socket.on("message", async (data) => {
+    try {
+      // Guardar el mensaje en MongoDB
+      const message = new messageModel({
+        message: data.message,
+        user: data.user,
+        timestamp: new Date(),
+      });
+      await message.save();
+
+      // Emitir el mensaje a todos los clientes
+      io.emit("messagesLogs", await messageModel.find());
+    } catch (error) {
+      console.error(error);
+    }
   });
 
   socket.emit("server_message", "mensaje enviado desde el server");

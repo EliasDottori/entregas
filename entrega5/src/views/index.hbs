@@ -2,10 +2,10 @@
   <div class="containerIndex">
     <div>
       <div class="titleContainer">
-        <h1 class="title"> {{title}} </h1>
+        <h1 class="title">Bienvenido a El Bodegon!</h1>
       </div>
       <div class="titleContainer">
-        <a class="link" href="{{urlProductos}}" class="linkCatalogo">
+        <a class="link" href="/productos" class="linkCatalogo">
           Ver Catalogo en tiempo real
         </a>
       </div>
@@ -23,16 +23,16 @@
     </div>
   </div>
   <div class="containProductos" id="containProducts">
-    {{#each productos}}
+    {{#each products}}
       <div class="producto">
         <h2> {{this.nombre}} </h2>
         <div>
-          <p> Bodega: {{bodega}} </p>
-          <p> Tipo: {{tipo}} </p>
-          <p> Variedad: {{variedad}} </p>
-          <p> Año: {{año}} </p>
+          <p> Bodega: {{this.bodega}} </p>
+          <p> Tipo: {{this.tipo}} </p>
+          <p> Variedad: {{this.variedad}} </p>
+          <p> Año: {{this.año}} </p>
         </div>
-        <h3> Precio: ${{precio}} </h3>
+        <h3> Precio: ${{this.precio}},00 </h3>
         <button>Agregar</button>
       </div>
     {{/each}}
