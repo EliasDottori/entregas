@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { productModel } from "../models/product.model.js";
+import ProductDao from "../dao/dbManager/product.dao.js";
 import messageModel from "../models/message.model.js";
 
 const router = Router();
+const productDao = new ProductDao();
 
 router.post("/", async (req, res) => {
   try {
@@ -20,7 +22,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const products = await productModel.find().lean();
+    const products = await productDao.findProduct();
     res.render("index", { products });
   } catch (error) {
     console.log(error);

@@ -49,15 +49,12 @@ io.on("connection", (socket) => {
 
   socket.on("message", async (data) => {
     try {
-      // Guardar el mensaje en MongoDB
       const message = new messageModel({
         message: data.message,
         user: data.user,
         timestamp: new Date(),
       });
       await message.save();
-
-      // Emitir el mensaje a todos los clientes
       io.emit("messagesLogs", await messageModel.find());
     } catch (error) {
       console.error(error);
